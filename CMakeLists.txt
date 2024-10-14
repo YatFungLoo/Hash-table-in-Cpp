@@ -11,7 +11,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DEX2" CACHE STRING "Set C++ Compiler F
 
 ### Project statament ###
 project(
-  Example
+  Hash
   VERSION 1.0
   # LANGUAGE CXX
   # DESCRIPTION "Example C++"
@@ -20,7 +20,7 @@ project(
 ### Source path ###
 set(SOURCES
   src/main.cpp
-  src/header.cpp
+  src/hash.cpp
 )
 
 ### Executable statament ###

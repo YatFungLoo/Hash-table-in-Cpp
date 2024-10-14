@@ -1,4 +1,4 @@
-#include "header.hpp"
+#include "hash.hpp"
 #include <cassert>
 
 int main() {
