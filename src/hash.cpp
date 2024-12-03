@@ -1,5 +1,6 @@
 #include "hash.hpp"
-
-void Example::Print() {
-    std::cout << "Hello World." << std::endl;
+size_t HashTable::templateHashFunction() {
+    std::cout << node_list[0]->value % table_size << std::endl;
+    std::cout << node_list[1]->value % table_size << std::endl;
+    return 99;
 }
