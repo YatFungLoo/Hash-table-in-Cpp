@@ -14,12 +14,10 @@ class HashTable {
   public:
     HashTable(const int &size) : table_size(size) {
         node_list = (HashNode **)malloc(sizeof(HashNode *) * this->table_size);
-        HashNode *myNode = new HashNode;
+        HashNode *myNode = (HashNode *)malloc(sizeof(HashNode));
         myNode->value = 10;
-        HashNode *myNode1 = new HashNode;
-        myNode1->value = 15;
         node_list[0] = myNode;
-        node_list[1] = myNode1;
+        node_count++;
     }
     std::size_t operator()(const int &b_index) const { return b_index % table_size; }
     int getKey() const { return 0; }
