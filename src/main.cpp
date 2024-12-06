@@ -1,12 +1,11 @@
 #include "hash.hpp"
 #include <cassert>
-#include <stdlib.h>
-
-#define SIZE 10 // temp size of hash table.
+#include <ostream>
 
 int main() {
-    HashTable node(15);
-    // std::cout << "Key: " << node.getKey() << std::endl;
-    std::cout << "Hash: " << std::endl << node.templateHashFunction() << std::endl;
+    HashTable table(15);
+    table.templatePrint();
+    std::cout << "Hash: " << table.templateHashFunction() << std::endl;
+    auto node_list = std::unique_ptr<HashNode[]>(new HashNode[10]);
     return 0;
 }
