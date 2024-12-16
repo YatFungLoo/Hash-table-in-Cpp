@@ -9,12 +9,17 @@ Hash table written in C++. References:
 **Table of Contents**
 
 - [Simple hash table implementation in C++](#simple-hash-table-implementation-in-c)
-    - [Hasing](#hasing)
-    - [Time-space tradeoff](#time-space-tradeoff)
-    - [Hash function](#hash-function)
-    - [To compiled](#to-compiled)
+  - [TODO](#todo)
+  - [Hasing](#hasing)
+  - [Time-space tradeoff](#time-space-tradeoff)
+  - [Hash function](#hash-function)
+  - [To compiled](#to-compiled)
 
 <!-- markdown-toc end -->
+
+## TODO
+1. First implementation -> separate chaining
+2. Second implementation -> Open address
 
 ## Hasing
 *Hash function* that transforms the search key into an array index, ideally different key would map to different indices but keys will hash the same array index.
