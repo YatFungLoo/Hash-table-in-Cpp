@@ -3,7 +3,8 @@
 
 int main() {
     HashTable table(15);
-    table.insertNode(16);
-    table.templatePrint(0);
+    table.insert(20);
+    table.insert(5);
+    table.search(20);
     return 0;
 }
