@@ -10,22 +10,20 @@ void HashTable::insert(const int value) {
     auto hash = hashFunc(value);
     auto my_node = std::make_unique<HashNode>(value);
     my_node->setKey(hash);
-    my_node->toggleInit();
-    // TODO fix
     node_list[hash] = std::move(my_node);
     return;
 
-    if (node_list[hash]->isItInitialised() == true && node_list[hash]->getNext() == nullptr) {
+    // If node_list[n] is pointing to nullptr, it is empty.
+    if (node_list[hash] != nullptr) {
         auto next_node = std::make_unique<HashNode>(value);
         node_list[hash]->setNext(next_node);
         insert(value, hash, next_node);
         return;
     }
 
-    if (node_list[hash]->isItInitialised() == false) {
+    if (node_list[hash] == nullptr) {
         auto my_node = std::make_unique<HashNode>(value);
         my_node->setKey(hash);
-        my_node->toggleInit();
         // TODO fix
         node_list[hash] = std::move(my_node);
     }
@@ -36,15 +34,14 @@ void HashTable::insert(const int value) {
 
 // Simple linked list insert.
 void HashTable::insert(const int value, const int hash, std::unique_ptr<HashNode> &node) {
-    if (node->isItInitialised() == true) {
+    if (node != nullptr) {
         insert(value, hash, node->getNext());
         return;
     }
 
-    if (node->isItInitialised() == false) {
+    if (node == nullptr) {
         auto myNode = std::make_unique<HashNode>(value);
         myNode->setKey(hash);
-        myNode->toggleInit();
         node = std::move(myNode);
     }
 
@@ -56,7 +53,7 @@ void HashTable::search(const int key) {
     auto b_index = hashFunc(key);
     auto &target_node = node_list[b_index];
 
-    if (target_node->isItInitialised() == false) {
+    if (target_node == nullptr) {
         std::cout << "Key not found:" << std::endl;
         return;
     }

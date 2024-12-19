@@ -18,11 +18,6 @@ class HashNode {
         value = target;
         return;
     }
-    bool isItInitialised() { return init; }
-    void toggleInit() {
-        init = !init;
-        return;
-    }
     std::unique_ptr<HashNode> &getNext() { return next; }
     void setNext(std::unique_ptr<HashNode> &node) {
         next = std::move(node);
@@ -33,7 +28,6 @@ class HashNode {
     std::size_t b_index = 0;
     int value = 0;
     std::unique_ptr<HashNode> next = nullptr; // Separate chaining.
-    bool init = false;
 };
 
 // Class with basic get set function.
