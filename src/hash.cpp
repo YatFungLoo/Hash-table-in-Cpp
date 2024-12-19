@@ -8,11 +8,6 @@ int HashTable::hashFunc(const int value) {
 
 void HashTable::insert(const int value) {
     auto hash = hashFunc(value);
-    auto my_node = std::make_unique<HashNode>(value);
-    my_node->setKey(hash);
-    node_list[hash] = std::move(my_node);
-    return;
-
     // If node_list[n] is pointing to nullptr, it is empty.
     if (node_list[hash] != nullptr) {
         auto next_node = std::make_unique<HashNode>(value);
@@ -24,15 +19,14 @@ void HashTable::insert(const int value) {
     if (node_list[hash] == nullptr) {
         auto my_node = std::make_unique<HashNode>(value);
         my_node->setKey(hash);
-        // TODO fix
         node_list[hash] = std::move(my_node);
+        node_count++;
+        return;
     }
-
-    node_count++;
     return;
 }
 
-// Simple linked list insert.
+// Singular linked list.
 void HashTable::insert(const int value, const int hash, std::unique_ptr<HashNode> &node) {
     if (node != nullptr) {
         insert(value, hash, node->getNext());
@@ -49,8 +43,8 @@ void HashTable::insert(const int value, const int hash, std::unique_ptr<HashNode
     return;
 }
 
-void HashTable::search(const int key) {
-    auto b_index = hashFunc(key);
+void HashTable::search(const int value) {
+    auto b_index = hashFunc(value);
     auto &target_node = node_list[b_index];
 
     if (target_node == nullptr) {
@@ -58,30 +52,29 @@ void HashTable::search(const int key) {
         return;
     }
 
-    bool hit = linearSearch(target_node, key);
+    bool hit = linearSearch(target_node, value);
 
     if (hit == true) {
-        std::cout << "Key found:" << std::endl;
-        printRawIndex(b_index);
+        std::cout << "Key found" << std::endl;
         return;
     } else if (hit == false) {
-        std::cout << "Key not found:" << std::endl;
+        std::cout << "Key not found" << std::endl;
     }
 }
 
-bool HashTable::linearSearch(std::unique_ptr<HashNode> &node, const int key) {
-    auto value = node->getValue();
+bool HashTable::linearSearch(std::unique_ptr<HashNode> &node, const int value) {
+    auto node_value = node->getValue();
 
     // Hit at linked list head.
-    if (value == key) {
+    if (node_value == value) {
         return true;
     }
 
     // Iterate until nullptr hit.
     auto &next_node = node->getNext();
     while (next_node != nullptr) {
-        value = next_node->getValue();
-        if (value == key) {
+        node_value = next_node->getValue();
+        if (node_value == value) {
             return true;
         }
         next_node = std::move(next_node->getNext());
@@ -90,8 +83,8 @@ bool HashTable::linearSearch(std::unique_ptr<HashNode> &node, const int key) {
     return false;
 }
 
-void HashTable::printRawIndex(std::size_t id) {
-    std::cout << "Key " << node_list[id]->getKey() << std::endl;
-    std::cout << "Value: " << node_list[id]->getValue() << std::endl;
+void HashTable::printRawIndex(std::unique_ptr<HashNode> &node) {
+    std::cout << "Key " << node->getKey() << std::endl;
+    std::cout << "Value: " << node->getValue() << std::endl;
     std::cout << "Node counts: " << node_count << std::endl;
 }

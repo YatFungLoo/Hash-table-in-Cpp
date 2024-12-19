@@ -45,13 +45,13 @@ class HashTable {
     // size_t hashFunc(std::unique_ptr<HashNode> &node);
     void insert(const int value);
     void insert(const int value, const int hash, std::unique_ptr<HashNode> &node);
-    void search(const int key);
+    void search(const int value);
 
   private:
     int node_count = 0; // Number of elements.
     int table_size = 0; // Size of hash table.
 
     int hashFunc(const int value);
-    bool linearSearch(std::unique_ptr<HashNode> &node, const int key);
-    void printRawIndex(size_t id);
+    bool linearSearch(std::unique_ptr<HashNode> &node, const int value);
+    void printRawIndex(std::unique_ptr<HashNode> &node);
 };
