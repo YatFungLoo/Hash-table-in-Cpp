@@ -47,17 +47,11 @@ mkdir build && cd build
 ```
 
 ```
-cmake .. --preset=debug
-```
-
-or 
-
-```
-cmake .. --preset=release
+cmake .. --preset=[debug/release]
 ```
 
 ```
 ninja clean && ninja
 ```
 
-and executable will exist in the `build/` directory.
+and executable `Hash` will exist in the `build/` directory.
